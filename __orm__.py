@@ -1,14 +1,25 @@
 from __db__ import Connect
 
 class ORM:
-    
+        
     def __init__(self, db_connection):
         self.db_connection = db_connection
         
     def save(self, obj):
-        # Implement logic to save the object to the database
-        pass
+        
+        cursor = self.db_connection.cursor()
 
+        # Extract the data from the object and construct an INSERT query
+        # Example assumes the object has attributes corresponding to the column_names
+        query = "INSERT INTO {} ({}) VALUES ({})".format(table_name, ", ".join(column_names), ":" + ", :".join(column_names))
+        data = {column_name: getattr(obj, column_name) for column_name in column_names}
+
+        # Execute the INSERT query with the data
+        cursor.execute(query, data)
+        self.db_connection.commit()
+
+        cursor.close()
+        
     def update(self, obj):
         # Implement logic to update the object in the database
         pass

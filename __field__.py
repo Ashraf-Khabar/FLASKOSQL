@@ -1,4 +1,5 @@
 class Field:
+    
     def __init__(self, name, data_type, primary_key=False, unique=False, nullable=True, default=None):
         self.name = name
         self.data_type = data_type

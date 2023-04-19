@@ -1,6 +1,5 @@
-
-
 class Model:
+    
     def __init__(self, **kwargs):
         # Implement logic to initialize the object with provided attributes
         pass
