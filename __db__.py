@@ -21,5 +21,11 @@ class Connect:
             print(f"Error connecting to Oracle database: {e}")
             return None
     
+
+connexion = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl')
+if connexion.connect() : 
+    print("Connected")
+else :
+    print("Not connected")
     
     
