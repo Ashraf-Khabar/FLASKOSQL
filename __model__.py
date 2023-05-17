@@ -1,16 +1,9 @@
 import cx_Oracle
 from __db__ import Connect
 from __field__ import Field
-import os
-
-db_username = os.environ.get('DB_USERNAME')
-db_password = os.environ.get('DB_PASSWORD')
-db_host = os.environ.get('DB_HOST')
-db_port = os.environ.get('DB_PORT')
-db_service_name = os.environ.get('DB_SERVICE_NAME')
-
 
 class Model:
+    
     def __init__(self, **kwargs):
         # Initialize the object with provided attributes
         for key, value in kwargs.items():
@@ -20,7 +13,7 @@ class Model:
     def create_table(cls):
         # Create the table with the same name as the class
         table_name = cls.__name__
-        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
+        connection = Connect().connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -44,7 +37,7 @@ class Model:
 
     def save(self):
         # Save the object to the database
-        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
+        connection = Connect().connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -96,7 +89,7 @@ class Model:
 
     def update(self):
         # Update the object in the database
-        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
+        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -121,7 +114,8 @@ class Model:
     
     def delete(self):
         # Delete the object from the database
-        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
+        connection = Connect('orm', 'ormpw', 'localhost',
+                             1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -141,7 +135,8 @@ class Model:
     @classmethod
     def get(cls, object_id):
         # Retrieve an object from the database based on its ID
-        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
+        connection = Connect('orm', 'ormpw', 'localhost',
+                             1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
