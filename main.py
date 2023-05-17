@@ -9,18 +9,19 @@ app = Flask(__name__)
 # Initialize the model, the field, and the Flask API:
 
 Model.Users.create_table()
-student = Model.Users(id=1, name="Ashraf", last_name="KHABAR", CNE="1234ER5")
+users = Model.Users(id=1, name="Ashraf", last_name="KHABAR", CNE="1234ER5")
 
-# Creation of student : 
-def create_student():
+# Creation of users : 
+def create_users():
     # Create a new user
-    student.save()
+    users.save()
     
 # Updating the user :
-def update_student():
-    student.name = "Asharf"
+def update_users():
+    users.name = "Asharf"
+    print("test")
     # Call the update() method to save the changes to the database
-    student.update()
+    users.update()
 
 
 def main():
@@ -31,6 +32,6 @@ def main():
         print("Not connected")
 
 if __name__ == "__main__":
-    create_student()
-    # update_student()
+    create_users()
+    update_users()
     main()

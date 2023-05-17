@@ -8,4 +8,4 @@ class Users(Model):
     last_name = Field("last_name", "VARCHAR2(100)", nullable=False)
     CNE = Field("CNE", "VARCHAR2(100)", unique=True, nullable=False)
     # Define a composite primary key
-    __primary_key__ = ("id", "CNE") 
+    __primary_key__ = ("id") 
