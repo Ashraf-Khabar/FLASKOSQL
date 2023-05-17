@@ -16,12 +16,18 @@ class Students(Model):
 
 # Initialize the model, the field, and the Flask API:
 Students.create_table()
+student = Students(id=1, name="Ashraf", last_name="KHABAR", CNE="1234ER5")
 
 # Creation of student : 
-def create_user():
+def create_student():
     # Create a new user
-    student = Students(id=1, name="John", last_name="Doe", CNE="12345")
     student.save()
+    
+# Updating the user :
+def update_student():
+    student.name = "Asharf AAA"
+    # Call the update() method to save the changes to the database
+    student.update()
 
 
 def main():
@@ -33,5 +39,6 @@ def main():
     # app.run()
 
 if __name__ == "__main__":
-    create_user()
+    # create_student()
+    update_student()
     main()

@@ -1,6 +1,13 @@
 import cx_Oracle
 from __db__ import Connect
 from __field__ import Field
+import os
+
+db_username = os.environ.get('DB_USERNAME')
+db_password = os.environ.get('DB_PASSWORD')
+db_host = os.environ.get('DB_HOST')
+db_port = os.environ.get('DB_PORT')
+db_service_name = os.environ.get('DB_SERVICE_NAME')
 
 
 class Model:
@@ -13,7 +20,7 @@ class Model:
     def create_table(cls):
         # Create the table with the same name as the class
         table_name = cls.__name__
-        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
+        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -37,7 +44,7 @@ class Model:
 
     def save(self):
         # Save the object to the database
-        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
+        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -64,10 +71,9 @@ class Model:
         else:
             print("Failed to connect to the database.")
 
-    def update(self):
+    
         # Update the object in the database
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -75,13 +81,12 @@ class Model:
                 for key, value in self.__dict__.items():
                     set_values.append("{} = :{}".format(key, key))
 
-                update_query = "UPDATE table_name SET {} WHERE id = :id".format(
-                    ", ".join(set_values))
+                update_query = "UPDATE table_name SET {} WHERE id = :id".format(", ".join(set_values))
                 cursor.execute(update_query, self.__dict__)
                 connection.commit()
                 print("Object updated successfully!")
             except cx_Oracle.Error as e:
-                print(f"Error updating object in database: {e}")
+                print(f"Error updating object in the database: {e}")
             finally:
                 if cursor:
                     cursor.close()
@@ -89,10 +94,34 @@ class Model:
         else:
             print("Failed to connect to the database.")
 
+    def update(self):
+        # Update the object in the database
+        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
+        if connection:
+            try:
+                cursor = connection.cursor()
+                set_values = []
+                for key, value in self.__dict__.items():
+                    set_values.append("{} = :{}".format(key, key))
+
+                table_name = self.__class__.__name__  # Get the table name from the class
+                update_query = "UPDATE {} SET {} WHERE id = :id".format(
+                    table_name, ", ".join(set_values))
+                cursor.execute(update_query, self.__dict__)
+                connection.commit()
+                print("Object updated successfully!")
+            except cx_Oracle.Error as e:
+                print(f"Error updating object in the database: {e}")
+            finally:
+                if cursor:
+                    cursor.close()
+                connection.close()
+        else:
+            print("Failed to connect to the database.")
+    
     def delete(self):
         # Delete the object from the database
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -112,8 +141,7 @@ class Model:
     @classmethod
     def get(cls, object_id):
         # Retrieve an object from the database based on its ID
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+        connection = Connect(db_username, db_password, db_host, db_port, db_service_name).connect()
         if connection:
             try:
                 cursor = connection.cursor()
