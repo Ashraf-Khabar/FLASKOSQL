@@ -13,8 +13,7 @@ class Model:
     def create_table(cls):
         # Create the table with the same name as the class
         table_name = cls.__name__
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -23,8 +22,7 @@ class Model:
                     if isinstance(attr_value, Field):
                         columns.append(attr_value.get_column_definition())
 
-                create_query = "CREATE TABLE {} ({})".format(
-                    table_name, ", ".join(columns))
+                create_query = "CREATE TABLE {} ({})".format(table_name, ", ".join(columns))
                 cursor.execute(create_query)
                 connection.commit()
                 print("Table '{}' created successfully!".format(table_name))
@@ -36,51 +34,10 @@ class Model:
                 connection.close()
         else:
             print("Failed to connect to the database.")
-        # Create a table in the database
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
-        if connection:
-            try:
-                cursor = connection.cursor()
-                table_name = cls.__name__
-                columns = []
-                constraints = []
-
-                for attr_name, attr_value in cls.__dict__.items():
-                    if isinstance(attr_value, Field):
-                        columns.append(attr_value.get_column_definition())
-                        if attr_value.primary_key:
-                            constraints.append(
-                                f"PRIMARY KEY ({attr_value.column_name})")
-                        if attr_value.unique:
-                            constraints.append(
-                                f"UNIQUE ({attr_value.column_name})")
-                        if not attr_value.nullable:
-                            constraints.append(
-                                f"NOT NULL ({attr_value.column_name})")
-
-                create_table_query = f"""
-                    CREATE TABLE {table_name} (
-                        {', '.join(columns)},
-                        {', '.join(constraints)}
-                    )
-                """
-                cursor.execute(create_table_query)
-                connection.commit()
-                print(f"Table '{table_name}' created successfully!")
-            except cx_Oracle.Error as e:
-                print(f"Error creating table: {e}")
-            finally:
-                if cursor:
-                    cursor.close()
-                connection.close()
-        else:
-            print("Failed to connect to the database.")
 
     def save(self):
         # Save the object to the database
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -92,8 +49,9 @@ class Model:
                     values.append(value)
                     placeholders.append(':{}'.format(key))
 
-                insert_query = "INSERT INTO table_name ({}) VALUES ({})".format(
-                    ", ".join(columns), ", ".join(placeholders))
+                table_name = self.__class__.__name__  # Get the table name from the class
+                insert_query = "INSERT INTO {} ({}) VALUES ({})".format(
+                    table_name, ", ".join(columns), ", ".join(placeholders))
                 cursor.execute(insert_query, values)
                 connection.commit()
                 print("Object saved successfully!")
