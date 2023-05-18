@@ -4,15 +4,19 @@ from __field__ import Field
 
 class Model:
     
+    # Constructor : it takes two arguments (self ("this" in other languages and *kwargs wich can be translated to string of values))
     def __init__(self, **kwargs):
         # Initialize the object with provided attributes
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+    # Method to return that create a table with the same name as the class :
     @classmethod
     def create_table(cls):
         # Create the table with the same name as the class
+        # This method is a static method (it could be called from the class without instance (read OOP concepts and the documentation))
         table_name = cls.__name__
+        # The connect method takes no parameters, it loads the data from the .env file, but it can takes parametrs two (read the documentation)
         connection = Connect().connect()
         if connection:
             try:

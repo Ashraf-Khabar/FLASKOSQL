@@ -15,7 +15,3 @@ class Field:
         if not self.nullable:
             column_definition += " NOT NULL"
         return column_definition
-
-# Example usage:
-id_field = Field("id", "NUMBER", primary_key=True)
-name_field = Field("name", "VARCHAR2(100)", unique=True, nullable=False)
