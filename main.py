@@ -7,14 +7,22 @@ import Models.UsersModel as Model
 app = Flask(__name__)
 
 # Initialize the model, the field, and the Flask API:
-
-Model.Users.create_table()
-users = Model.Users(id=1, name="Ashraf", last_name="KHABAR", CNE="1234ER5")
+users = Model.Users()
+users.create_table() 
 
 # Creation of users : 
 def create_users():
+    user = users(1, "ASHRAF", "KHABAR", "HSY1425")
     # Create a new user
-    users.save()
+    user.save()
+    
+def get_user(user_id):
+    # Retrieve a user by ID
+    user = users.get(user_id)
+    if user:
+        print(f"User: {user.id}, {user.name}")
+    else:
+        print("User not found")
     
 # Updating the user :
 def update_users():
@@ -22,16 +30,16 @@ def update_users():
     print("test")
     # Call the update() method to save the changes to the database
     users.update()
-
-
-def main():
-    connection = Connect()
-    if connection.connect():
-        print("Connected")
+   
+def delete_user(user_id):
+    # Delete a user by ID
+    user = users.get(user_id)
+    if user:
+        user.delete()
+        print("User deleted successfully")
     else:
-        print("Not connected")
+        print("User not found")
 
-if __name__ == "__main__":
-    create_users()
-    update_users()
-    main()
+   
+create_users()
+
