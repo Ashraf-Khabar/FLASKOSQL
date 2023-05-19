@@ -1,6 +1,6 @@
 import cx_Oracle
-from __db__ import Connect
-from __field__ import Field
+from field import Field
+
 
 class Model:
     _connection = None
