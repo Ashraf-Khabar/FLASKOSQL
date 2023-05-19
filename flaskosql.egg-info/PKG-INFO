@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: flaskosql
+Version: 1.0.0
+Summary: ORM for ORACLE DB for FLASK API
+Author: Ashraf khabar
+Author-email: <khabarachraf@gmail.com>
+Keywords: python,orm,api,oracle,database,flask
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+
+# FLASKOSQL
+<center><img src="./source/flaskos.png"></center><br><br>
+FLASKOS is a ORM for Oracle db for FLASK API, it provides a simple manupilation of database and simple mapiing to simplify interaction with relational database .
