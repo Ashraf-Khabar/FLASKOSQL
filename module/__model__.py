@@ -3,13 +3,18 @@ from __db__ import Connect
 from __field__ import Field
 
 class Model:
+    _connection = None
     
     # Constructor : it takes two arguments (self ("this" in other languages and *kwargs wich can be translated to string of values))
     def __init__(self, **kwargs):
         # Initialize the object with provided attributes
         for key, value in kwargs.items():
             setattr(self, key, value)
-
+            
+    @classmethod
+    def set_connection(cls, connection):
+        cls._connection = connection
+    
     # Method to return that create a table with the same name as the class :
     @classmethod
     def create_table(cls):
@@ -17,7 +22,7 @@ class Model:
         # This method is a static method (it could be called from the class without instance (read OOP concepts and the documentation))
         table_name = cls.__name__
         # The connect method takes no parameters, it loads the data from the .env file, but it can takes parametrs two (read the documentation)
-        connection = Connect().connect()
+        connection = cls._connection
         if connection:
             try:
                 cursor = connection.cursor()
@@ -35,13 +40,13 @@ class Model:
             finally:
                 if cursor:
                     cursor.close()
-                connection.close()
+                    # connection.close()
         else:
             print("Failed to connect to the database.")
 
     def save(self):
         # Save the object to the database
-        connection = Connect().connect()
+        connection = self.__class__._connection
         if connection:
             try:
                 cursor = connection.cursor()
@@ -70,7 +75,7 @@ class Model:
 
     def update(self):
         # Update the object in the database
-        connection = Connect().connect()
+        connection = self.__class__._connection
         if connection:
             try:
                 cursor = connection.cursor()
@@ -95,7 +100,7 @@ class Model:
     
     def delete(self):
         # Delete the object from the database
-        connection = Connect().connect()
+        connection = self.__class__._connection
         if connection:
             try:
                 cursor = connection.cursor()
@@ -116,7 +121,7 @@ class Model:
     @classmethod
     def get(cls, **conditions):
         # Retrieve an object from the database based on the specified conditions
-        connection = Connect().connect()
+        connection = cls._connection
         if connection:
             try:
                 cursor = connection.cursor()
