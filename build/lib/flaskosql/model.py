@@ -1,4 +1,5 @@
 import cx_Oracle
+from field import Field
 
 class Model:
     _connection = None
@@ -67,7 +68,7 @@ class Model:
             finally:
                 if cursor:
                     cursor.close()
-                connection.close()
+                    # connection.close()
         else:
             print("Failed to connect to the database.")
 
@@ -92,7 +93,7 @@ class Model:
             finally:
                 if cursor:
                     cursor.close()
-                connection.close()
+                    # connection.close()
         else:
             print("Failed to connect to the database.")
     
@@ -112,7 +113,7 @@ class Model:
             finally:
                 if cursor:
                     cursor.close()
-                connection.close()
+                    # connection.close()
         else:
             print("Failed to connect to the database.")
 
@@ -144,7 +145,7 @@ class Model:
             finally:
                 if cursor:
                     cursor.close()
-                connection.close()
+                    # connection.close()
         else:
             print("Failed to connect to the database.")
             return None

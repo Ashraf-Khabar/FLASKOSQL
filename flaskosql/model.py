@@ -1,4 +1,5 @@
 import cx_Oracle
+from field import Field
 
 class Model:
     _connection = None
