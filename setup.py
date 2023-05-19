@@ -13,7 +13,7 @@ LONG_DESCRIPTION = 'An ORM that allow us to connect with the ORACLE DB using OOP
 
 # Setting up
 setup(
-    name="flaskos",
+    name="flaskosql",
     version=VERSION,
     author="Ashraf khabar",
     author_email="<khabarachraf@gmail.com>",

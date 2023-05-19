@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+flaskosql.egg-info/PKG-INFO
+flaskosql.egg-info/SOURCES.txt
+flaskosql.egg-info/dependency_links.txt
+flaskosql.egg-info/requires.txt
+flaskosql.egg-info/top_level.txt
