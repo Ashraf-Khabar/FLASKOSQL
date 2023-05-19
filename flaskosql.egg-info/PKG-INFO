@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: flaskosql
-Version: 1.0.0
+Version: 1.0.1
 Summary: ORM for ORACLE DB for FLASK API
 Author: Ashraf khabar
 Author-email: <khabarachraf@gmail.com>
