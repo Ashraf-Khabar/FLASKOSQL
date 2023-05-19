@@ -1,4 +1,4 @@
-import 
+import cx_Oracle
 
 class Connect:
     _connection = None
