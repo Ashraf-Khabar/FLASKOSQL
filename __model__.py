@@ -70,7 +70,7 @@ class Model:
 
     def update(self):
         # Update the object in the database
-        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
+        connection = Connect().connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -95,7 +95,7 @@ class Model:
     
     def delete(self):
         # Delete the object from the database
-        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
+        connection = Connect().connect()
         if connection:
             try:
                 cursor = connection.cursor()
@@ -116,7 +116,7 @@ class Model:
     @classmethod
     def get(cls, **conditions):
         # Retrieve an object from the database based on the specified conditions
-        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
+        connection = Connect().connect()
         if connection:
             try:
                 cursor = connection.cursor()
