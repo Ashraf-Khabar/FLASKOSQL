@@ -68,29 +68,6 @@ class Model:
         else:
             print("Failed to connect to the database.")
 
-    
-        # Update the object in the database
-        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
-        if connection:
-            try:
-                cursor = connection.cursor()
-                set_values = []
-                for key, value in self.__dict__.items():
-                    set_values.append("{} = :{}".format(key, key))
-
-                update_query = "UPDATE table_name SET {} WHERE id = :id".format(", ".join(set_values))
-                cursor.execute(update_query, self.__dict__)
-                connection.commit()
-                print("Object updated successfully!")
-            except cx_Oracle.Error as e:
-                print(f"Error updating object in the database: {e}")
-            finally:
-                if cursor:
-                    cursor.close()
-                connection.close()
-        else:
-            print("Failed to connect to the database.")
-
     def update(self):
         # Update the object in the database
         connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
@@ -118,35 +95,35 @@ class Model:
     
     def delete(self):
         # Delete the object from the database
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
-                delete_query = "DELETE FROM table_name WHERE id = :id"
+                table_name = self.__class__.__name__  # Get the table name from the class
+                delete_query = "DELETE FROM {} WHERE id = :id".format(table_name)
                 cursor.execute(delete_query, self.__dict__)
                 connection.commit()
                 print("Object deleted successfully!")
             except cx_Oracle.Error as e:
-                print(f"Error deleting object from database: {e}")
+                print(f"Error deleting object from the database: {e}")
             finally:
                 if cursor:
                     cursor.close()
-                    connection.close()
-                else:
-                    print("Failed to connect to the database.")
+                connection.close()
+        else:
+            print("Failed to connect to the database.")
 
     @classmethod
-    def get(cls, object_id):
-        # Retrieve an object from the database based on its ID
-        connection = Connect('orm', 'ormpw', 'localhost',
-                             1521, 'orcl').connect()
+    def get(cls, **conditions):
+        # Retrieve an object from the database based on the specified conditions
+        connection = Connect('orm', 'ormpw', 'localhost', 1521, 'orcl').connect()
         if connection:
             try:
                 cursor = connection.cursor()
                 table_name = cls.__name__  # Get the class name
-                select_query = f"SELECT * FROM {table_name} WHERE id = :id"
-                cursor.execute(select_query, {"id": object_id})
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT * FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
                 result = cursor.fetchone()
                 if result:
                     columns = [column[0] for column in cursor.description]
@@ -159,7 +136,7 @@ class Model:
                     print("Object not found in the database.")
                     return None
             except cx_Oracle.Error as e:
-                print(f"Error retrieving object from database: {e}")
+                print(f"Error retrieving object from the database: {e}")
                 return None
             finally:
                 if cursor:
