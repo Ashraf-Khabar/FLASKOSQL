@@ -1,5 +1,5 @@
 import cx_Oracle
-from field import Field
+from flaskosql.field import Field
 
 class Model:
     _connection = None
