@@ -1,7 +1,12 @@
 # FlaskoSQL
 
 
-[![PyPI version](https://badge.fury.io/py/package-name.svg)](https://badge.fury.io/py/package-name) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://img.shields.io/badge/flaskos-1.2.1-green.svg)](https://pypi.org/project/flaskosql/)
+[![GitHub code source](https://img.shields.io/badge/Code-Source-orange.svg)](https://github.com/Ashraf-Khabar/FLASKOSQL)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+
+
 
 Description
 -----------
@@ -21,16 +26,12 @@ Installation
 
 You can install the Package Name package using pip:
 
-shellCopy code
-
 `pip install flaskosql`
 
 Usage
 -----
 
 1.  Import the necessary classes and functions from the package:
-
-pythonCopy code
 
 `from flaskosql.db import Connect`<br>
 `from flaskosql.field import Field`<br>
