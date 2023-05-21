@@ -2,6 +2,7 @@ import cx_Oracle
 from flaskosql.field import Field
 
 class Model:
+    # Variable for getting the connection :
     _connection = None
     
     # Constructor : it takes two arguments (self ("this" in other languages and *kwargs wich can be translated to string of values))
@@ -9,7 +10,8 @@ class Model:
         # Initialize the object with provided attributes
         for key, value in kwargs.items():
             setattr(self, key, value)
-            
+    
+    # Method tha d¡set the connection : 
     @classmethod
     def set_connection(cls, connection):
         cls._connection = connection
@@ -43,6 +45,7 @@ class Model:
         else:
             print("Failed to connect to the database.")
 
+    # Method that insert into the table : 
     def save(self):
         # Save the object to the database
         connection = self.__class__._connection
@@ -72,6 +75,7 @@ class Model:
         else:
             print("Failed to connect to the database.")
 
+    # Mthod that update a table :
     def update(self):
         # Update the object in the database
         connection = self.__class__._connection
@@ -97,6 +101,7 @@ class Model:
         else:
             print("Failed to connect to the database.")
     
+    # Method that delete a a row from table : 
     def delete(self):
         # Delete the object from the database
         connection = self.__class__._connection
@@ -117,6 +122,7 @@ class Model:
         else:
             print("Failed to connect to the database.")
 
+    # Method that delete filter a table based on one condition or more : 
     @classmethod
     def get(cls, **conditions):
         # Retrieve an object from the database based on the specified conditions
@@ -149,3 +155,123 @@ class Model:
         else:
             print("Failed to connect to the database.")
             return None
+
+    # Method that get a list of elements from a table : 
+    @classmethod
+    def getAll(cls, **conditions):
+        # Retrieve objects from the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT * FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                results = cursor.fetchall()
+                if results:
+                    columns = [column[0] for column in cursor.description]
+                    objects = []
+                    for row in results:
+                        obj_data = dict(zip(columns, row))
+                        model_instance = cls(**obj_data)
+                        objects.append(model_instance)
+                    return objects
+                else:
+                    print("No objects found in the database.")
+                    return []
+            except cx_Oracle.Error as e:
+                print(f"Error retrieving objects from the database: {e}")
+                return []
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return []
+    
+    @classmethod
+    def fetchAll(cls):
+        # Retrieve all objects from the database
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                select_query = f"SELECT * FROM {table_name}"
+                cursor.execute(select_query)
+                results = cursor.fetchall()
+
+                objects = []
+                for result in results:
+                    columns = [column[0] for column in cursor.description]
+                    obj_data = dict(zip(columns, result))
+
+                    # Create an instance of the class with dynamic attribute assignment
+                    model_instance = cls(**obj_data)
+                    objects.append(model_instance)
+
+                return objects
+            except cx_Oracle.Error as e:
+                print(f"Error retrieving objects from the database: {e}")
+                return []
+            finally:
+                if cursor:
+                    cursor.close()
+                    # connection.close()
+        else:
+            print("Failed to connect to the database.")
+            return []
+
+    @classmethod
+    def count(cls, **conditions):
+        # Count the number of rows in the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT COUNT(*) FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the count
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error counting rows in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
+ 
+    @classmethod
+    def countAll(cls):
+        # Count the number of rows in the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                select_query = f"SELECT COUNT(*) FROM {table_name}"
+                cursor.execute(select_query)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the count
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error counting rows in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
