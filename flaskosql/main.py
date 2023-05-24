@@ -11,7 +11,10 @@ Model.set_connection(connection=connection)
 class Roles(Model):
     ID = Field("id", "NUMBER", primary_key=True)
     NAME = Field("name", "VARCHAR2(100)", nullable=False)
+    AGE = Field("age", "VARCHAR2(100)", nullable=False)
+    
+    
 
-roles = Roles.countAll()
+Roles.create_table(fresh=True)
 
-print(roles)
+# roles = Roles.countAll()

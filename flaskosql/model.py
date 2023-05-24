@@ -18,7 +18,7 @@ class Model:
     
     # Method to return that create a table with the same name as the class :
     @classmethod
-    def create_table(cls):
+    def create_table(cls, fresh=False):
         # Create the table with the same name as the class
         # This method is a static method (it could be called from the class without instance (read OOP concepts and the documentation))
         table_name = cls.__name__
@@ -27,6 +27,11 @@ class Model:
         if connection:
             try:
                 cursor = connection.cursor()
+                if fresh:
+                    # Drop the existing table if fresh is True
+                    drop_query = f"DROP TABLE {table_name}"
+                    cursor.execute(drop_query)
+                    print(f"Table '{table_name}' dropped.")
                 columns = []
                 for attr_name, attr_value in cls.__dict__.items():
                     if isinstance(attr_value, Field):
