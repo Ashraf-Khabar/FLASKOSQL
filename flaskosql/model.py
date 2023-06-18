@@ -280,3 +280,202 @@ class Model:
         else:
             print("Failed to connect to the database.")
             return 0
+    
+    @classmethod
+    def sum(cls, column, **conditions):
+        # Calculate the sum of a column in the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT SUM({column}) FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the sum
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error calculating sum in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
+
+    @classmethod
+    def average(cls, column, **conditions):
+        # Calculate the average of a column in the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT AVG({column}) FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the average
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error calculating average in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
+
+    @classmethod
+    def minimum(cls, column, **conditions):
+        # Find the minimum value of a column in the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT MIN({column}) FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the minimum value
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error finding minimum value in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
+
+    @classmethod
+    def maximum(cls, column, **conditions):
+        # Find the maximum value of a column in the database based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT MAX({column}) FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the maximum value
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error finding maximum value in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
+
+    @classmethod
+    def countDistinct(cls, column, **conditions):
+        # Count the number of distinct values in a column based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT COUNT(DISTINCT {column}) FROM {table_name} WHERE {conditions_str}"
+                cursor.execute(select_query, conditions)
+                result = cursor.fetchone()
+                if result:
+                    return result[0]  # Return the count of distinct values
+                else:
+                    print("No rows found in the database.")
+                    return 0
+            except cx_Oracle.Error as e:
+                print(f"Error counting distinct values in the database: {e}")
+                return 0
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return 0
+
+    @classmethod
+    def groupBy(cls, column, **conditions):
+        # Perform a GROUP BY query on a column based on the specified conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT {column}, COUNT(*) FROM {table_name} WHERE {conditions_str} GROUP BY {column}"
+                cursor.execute(select_query, conditions)
+                results = cursor.fetchall()
+                if results:
+                    return results  # Return the grouped results
+                else:
+                    print("No rows found in the database.")
+                    return []
+            except cx_Oracle.Error as e:
+                print(f"Error performing GROUP BY query in the database: {e}")
+                return []
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return []
+
+    @classmethod
+    def having(cls, condition, **conditions):
+        # Perform a HAVING query based on the specified condition and conditions
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__  # Get the class name
+                conditions_str = " AND ".join(f"{key} = :{key}" for key in conditions)
+                select_query = f"SELECT * FROM {table_name} WHERE {conditions_str} HAVING {condition}"
+                cursor.execute(select_query, conditions)
+                results = cursor.fetchall()
+                if results:
+                    columns = [column[0] for column in cursor.description]
+                    objects = []
+                    for row in results:
+                        obj_data = dict(zip(columns, row))
+                        model_instance = cls(**obj_data)
+                        objects.append(model_instance)
+                    return objects
+                else:
+                    print("No rows found in the database.")
+                    return []
+            except cx_Oracle.Error as e:
+                print(f"Error performing HAVING query in the database: {e}")
+                return []
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return []
+
+        
+        
+    
