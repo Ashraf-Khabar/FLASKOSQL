@@ -14,7 +14,7 @@ class Roles(Model):
     AGE = Field("age", "VARCHAR2(100)", nullable=False)
     
     
-'''
+
 role1 = Roles(id=1, name="ASHRAF", age = 22)
 role2 = Roles(id=2, name="SAMI", age = 22)
 role3 = Roles(id=3, name="KARIM", age = 22)
@@ -24,7 +24,9 @@ role1.save()
 role2.save()
 role3.save()
 role4.save()
-'''
+
+
+
 
 role = Roles.get(id = 3)
 if role :
