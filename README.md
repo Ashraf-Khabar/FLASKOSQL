@@ -123,7 +123,7 @@ For more details on using the Package Name package, please refer to the [documen
 License
 -------
 
-This package is licensed under the MIT License. See the [LICENSE](https://chat.openai.com/LICENSE) file for more information.
+This package is licensed under the MIT License. See the [LICENSE]() file for more information.
 
 * * * * *
 
