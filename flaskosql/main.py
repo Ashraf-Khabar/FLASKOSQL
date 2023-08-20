@@ -26,8 +26,6 @@ role3.save()
 role4.save()
 
 
-
-
 role = Roles.get(id = 3)
 if role :
     print(f"The name : {role.NAME}")
