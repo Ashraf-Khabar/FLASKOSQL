@@ -1,5 +1,5 @@
 from flaskosql.db import Connect
-from flaskos.model import Model
+from model import Model
 from flaskosql.field import Field
 
 
