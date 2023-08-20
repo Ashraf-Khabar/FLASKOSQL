@@ -35,7 +35,7 @@ Usage
 
 `from flaskosql.db import Connect`<br>
 `from flaskosql.field import Field`<br>
-`from flaskosql.moel import Model`<br>
+`from flaskosql.model import Model`<br>
 
 1.  Create a model class that represents a table in your Oracle database. Define the table schema using the `Field` class:
 
