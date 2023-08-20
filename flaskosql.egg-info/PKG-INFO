@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: flaskosql
-Version: 1.2.1
+Version: 1.2.5
 Summary: ORM for ORACLE DB for FLASK API 
 Author: Ashraf khabar
 Author-email: <khabarachraf@gmail.com>
@@ -52,7 +52,7 @@ Usage
 
 `from flaskosql.db import Connect`<br>
 `from flaskosql.field import Field`<br>
-`from flaskosql.moel import Model`<br>
+`from flaskosql.model import Model`<br>
 
 1.  Create a model class that represents a table in your Oracle database. Define the table schema using the `Field` class:
 
@@ -140,7 +140,7 @@ For more details on using the Package Name package, please refer to the [documen
 License
 -------
 
-This package is licensed under the MIT License. See the [LICENSE](https://chat.openai.com/LICENSE) file for more information.
+This package is licensed under the MIT License. See the [LICENSE]() file for more information.
 
 * * * * *
 
