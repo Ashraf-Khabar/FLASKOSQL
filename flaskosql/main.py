@@ -3,11 +3,7 @@ from model import Model
 from field import MySQLField
 
 connection = Connect.get_mysql_connection('root', '1453', 'localhost', 3306, 'mydb')
-print(connection)
 if connection:
-    print("Connected to the MySQL database.")
-
-    # Create the connection for the model:
     Model.set_connection(connection=connection)
 
     class Roles(Model):
@@ -16,7 +12,7 @@ if connection:
         AGE = MySQLField(column_name="age", data_type="VARCHAR(100)", nullable=False)
 
     # Create the table for the model
-    Roles.create_table(fresh=False)
+    Roles.create_table(fresh=True)
 
 else:
     print("Failed to connect to the database.")

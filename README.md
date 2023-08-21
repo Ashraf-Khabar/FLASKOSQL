@@ -6,13 +6,25 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
-<center><img src="./img/flaskos.png" height = "130"></center>
+<p align="center">
+    <img src="./img/flaskos.png" height = "130">
+</p>
 
+<p align="center">
+<a>
+ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/2560px-Oracle_logo.svg.png" alt="oracle" height="20">
+</a>&nbsp &nbsp
+<a>
+    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="oracle" height="50">
+</a>
+</p>
+
+**NEW :** *Support MySQL DBMS.*
 
 Description
 -----------
 
-The Package Name is a Python package that provides an Object-Relational Mapping (ORM) solution for Oracle databases, specifically designed for use in Flask APIs. It simplifies the interaction with an Oracle database by providing an intuitive interface for querying, inserting, updating, and deleting data.
+The Package Name is a Python package that provides an Object-Relational Mapping (ORM) solution for relational databases (Oracle and MySQL), specifically designed for use in Flask APIs. It simplifies the interaction with an Oracle and MySQL database by providing an intuitive interface for querying, inserting, updating, and deleting data.
 
 Features
 --------

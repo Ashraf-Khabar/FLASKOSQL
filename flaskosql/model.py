@@ -26,7 +26,6 @@ class Model:
         table_name = cls.__name__
         # The connect method takes no parameters, it loads the data from the .env file, but it can takes parametrs two (read the documentation)
         connection = cls._connection
-        print(connection)
         if connection:
             try:
                 cursor = connection.cursor()
