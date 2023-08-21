@@ -1,5 +1,7 @@
 import cx_Oracle
 from flaskosql.field import Field
+import mysql.connector
+from field import MySQLField
 
 class Model:
     # Variable for getting the connection :
@@ -24,6 +26,7 @@ class Model:
         table_name = cls.__name__
         # The connect method takes no parameters, it loads the data from the .env file, but it can takes parametrs two (read the documentation)
         connection = cls._connection
+        print(connection)
         if connection:
             try:
                 cursor = connection.cursor()
@@ -34,14 +37,14 @@ class Model:
                     print(f"Table '{table_name}' dropped.")
                 columns = []
                 for attr_name, attr_value in cls.__dict__.items():
-                    if isinstance(attr_value, Field):
+                    if isinstance(attr_value, (Field, MySQLField)):
                         columns.append(attr_value.get_column_definition())
 
                 create_query = "CREATE TABLE {} ({})".format(table_name, ", ".join(columns))
                 cursor.execute(create_query)
                 connection.commit()
                 print("Table '{}' created successfully!".format(table_name))
-            except cx_Oracle.Error as e:
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
                 print(f"Error creating table: {e}")
             finally:
                 if cursor:
