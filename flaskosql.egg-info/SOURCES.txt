@@ -1,7 +1,6 @@
 LICENSE
 README.md
 setup.py
-flaskosql/__init__.py
 flaskosql/db.py
 flaskosql/field.py
 flaskosql/main.py

@@ -1,10 +1,10 @@
 Metadata-Version: 2.1
 Name: flaskosql
-Version: 1.2.5
-Summary: ORM for ORACLE DB for FLASK API 
+Version: 2.0.0
+Summary: ORM to databases for FLASK API 
 Author: Ashraf khabar
 Author-email: <khabarachraf@gmail.com>
-Keywords: python,orm,api,oracle,database,flask
+Keywords: python,orm,api,oracle,mysql,database,flask
 Classifier: Development Status :: 1 - Planning
 Classifier: Intended Audience :: Developers
 Classifier: Programming Language :: Python :: 3
@@ -18,17 +18,26 @@ License-File: LICENSE
 # FlaskoSQL
 
 
-[![PyPI version](https://img.shields.io/badge/flaskos-1.2.1-green.svg)](https://pypi.org/project/flaskosql/)
+[![PyPI version](https://img.shields.io/badge/flaskos-1.2.5-green.svg)](https://pypi.org/project/flaskosql/)
 [![GitHub code source](https://img.shields.io/badge/Code-Source-orange.svg)](https://github.com/Ashraf-Khabar/FLASKOSQL)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
+<p align="center">
+<a>
+ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/2560px-Oracle_logo.svg.png" alt="oracle" height="20">
+</a>&nbsp &nbsp
+<a>
+    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="oracle" height="50">
+</a>
+</p>
 
+**NEW :** *Support MySQL DBMS.*
 
 Description
 -----------
 
-The Package Name is a Python package that provides an Object-Relational Mapping (ORM) solution for Oracle databases, specifically designed for use in Flask APIs. It simplifies the interaction with an Oracle database by providing an intuitive interface for querying, inserting, updating, and deleting data.
+The Package Name is a Python package that provides an Object-Relational Mapping (ORM) solution for relational databases (Oracle and MySQL), specifically designed for use in Flask APIs. It simplifies the interaction with an Oracle and MySQL database by providing an intuitive interface for querying, inserting, updating, and deleting data.
 
 Features
 --------
@@ -146,4 +155,4 @@ This package is licensed under the MIT License. See the [LICENSE]() file for mor
 
 Feel free to modify this template according to your needs. Remember to replace "Package Name" with the actual name of your package and update the relevant sections with the appropriate details about your ORM and its usage with Flask and Oracle databases.
 
-Make sure to also include the actual installation instructions, usage examples, and any other relevant information in your README file to provide a comprehensive guide for users of your package.
+Make sure to also include the actual installation instructions, usage examples, and any other relevant information in your README file to provide a comprehensive guide for users of your package.
