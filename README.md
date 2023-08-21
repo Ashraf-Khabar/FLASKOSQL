@@ -1,17 +1,18 @@
 # FlaskoSQL
 
-[![PyPI version](https://img.shields.io/badge/flaskos-2.0.0-green.svg)](https://pypi.org/project/flaskosql/)
+[![PyPI version](https://img.shields.io/badge/flaskos-2.1.1-green.svg)](https://pypi.org/project/flaskosql/)
 [![GitHub code source](https://img.shields.io/badge/Code-Source-orange.svg)](https://github.com/Ashraf-Khabar/FLASKOSQL)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+<p align="center">
+    <img src="./img/flaskos.png" height = "130">
+</p>
 
 <p align="center">
-<a>
+ <br><br>
  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/2560px-Oracle_logo.svg.png" alt="oracle" height="20">
-</a>
-<a>
-    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="oracle" height="50">
-</a>
+ <br><br>
+ <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="oracle" height="50">
 </p>
 
 **NEW :** *Support MySQL DBMS.*
@@ -126,7 +127,7 @@ role.update()
 role.delete()
 ```
 
-For more details on using the Package Name package, please refer to the [documentation](https://link-to-your-documentation/).
+For more details on using the Package Name package, please refer to the [documentation](https://achrafkhabar.com/flaskoSQL).
 
 License
 -------

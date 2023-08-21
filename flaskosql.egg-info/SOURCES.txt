@@ -1,10 +1,6 @@
 LICENSE
 README.md
 setup.py
-flaskosql/db.py
-flaskosql/field.py
-flaskosql/main.py
-flaskosql/model.py
 flaskosql.egg-info/PKG-INFO
 flaskosql.egg-info/SOURCES.txt
 flaskosql.egg-info/dependency_links.txt
