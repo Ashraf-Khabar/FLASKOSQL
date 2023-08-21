@@ -1,18 +1,14 @@
 # FlaskoSQL
 
-
-[![PyPI version](https://img.shields.io/badge/flaskos-1.2.5-green.svg)](https://pypi.org/project/flaskosql/)
+[![PyPI version](https://img.shields.io/badge/flaskos-2.0.0-green.svg)](https://pypi.org/project/flaskosql/)
 [![GitHub code source](https://img.shields.io/badge/Code-Source-orange.svg)](https://github.com/Ashraf-Khabar/FLASKOSQL)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-<p align="center">
-    <img src="./img/flaskos.png" height = "130">
-</p>
 
 <p align="center">
 <a>
  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/2560px-Oracle_logo.svg.png" alt="oracle" height="20">
-</a>&nbsp &nbsp
+</a>
 <a>
     <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="oracle" height="50">
 </a>
