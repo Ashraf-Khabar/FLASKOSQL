@@ -73,8 +73,8 @@ class Model:
                 cursor.execute(insert_query, values)
                 connection.commit()
                 print("Object saved successfully!")
-            except cx_Oracle.Error as e:
-                print(f"Error saving object to database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
             finally:
                 if cursor:
                     cursor.close()
