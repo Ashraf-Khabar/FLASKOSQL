@@ -1,7 +1,6 @@
 import cx_Oracle
-from flaskosql.field import Field
+from flaskosql.field import Field, MySQLField
 import mysql.connector
-from flaskosql.field import MySQLField
 
 class Model:
     # Variable for getting the connection :
