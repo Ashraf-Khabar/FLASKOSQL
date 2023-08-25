@@ -99,8 +99,8 @@ class Model:
                 cursor.execute(update_query, self.__dict__)
                 connection.commit()
                 print("Object updated successfully!")
-            except cx_Oracle.Error as e:
-                print(f"Error updating object in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
             finally:
                 if cursor:
                     cursor.close()
@@ -120,8 +120,8 @@ class Model:
                 cursor.execute(delete_query, self.__dict__)
                 connection.commit()
                 print("Object deleted successfully!")
-            except cx_Oracle.Error as e:
-                print(f"Error deleting object from the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
             finally:
                 if cursor:
                     cursor.close()
@@ -152,8 +152,8 @@ class Model:
                 else:
                     print("Object not found in the database.")
                     return None
-            except cx_Oracle.Error as e:
-                print(f"Error retrieving object from the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return None
             finally:
                 if cursor:
@@ -187,8 +187,8 @@ class Model:
                 else:
                     print("No objects found in the database.")
                     return []
-            except cx_Oracle.Error as e:
-                print(f"Error retrieving objects from the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return []
             finally:
                 if cursor:
@@ -219,8 +219,8 @@ class Model:
                     objects.append(model_instance)
 
                 return objects
-            except cx_Oracle.Error as e:
-                print(f"Error retrieving objects from the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return []
             finally:
                 if cursor:
@@ -247,8 +247,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error counting rows in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -273,8 +273,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error counting rows in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -300,8 +300,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error calculating sum in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -327,8 +327,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error calculating average in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -354,8 +354,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error finding minimum value in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -381,8 +381,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error finding maximum value in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -408,8 +408,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return 0
-            except cx_Oracle.Error as e:
-                print(f"Error counting distinct values in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return 0
             finally:
                 if cursor:
@@ -435,8 +435,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return []
-            except cx_Oracle.Error as e:
-                print(f"Error performing GROUP BY query in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return []
             finally:
                 if cursor:
@@ -468,8 +468,8 @@ class Model:
                 else:
                     print("No rows found in the database.")
                     return []
-            except cx_Oracle.Error as e:
-                print(f"Error performing HAVING query in the database: {e}")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating table: {e}")
                 return []
             finally:
                 if cursor:
