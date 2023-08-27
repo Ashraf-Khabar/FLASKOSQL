@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '2.1.2'
+VERSION = '2.1.4'
 DESCRIPTION = 'ORM to databases for FLASK API'
 LONG_DESCRIPTION = 'An ORM that allow us to connect with the relational databases (ORACLE and MySQL) using OOP concept, plus the interaction with the database in order to create a rest API using FLASK framwork '
 

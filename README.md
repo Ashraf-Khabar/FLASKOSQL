@@ -1,6 +1,6 @@
 # FlaskoSQL
 
-[![PyPI version](https://img.shields.io/badge/flaskos-2.1.2-green.svg)](https://pypi.org/project/flaskosql/)
+[![PyPI version](https://img.shields.io/badge/flaskos-2.1.4-green.svg)](https://pypi.org/project/flaskosql/)
 [![GitHub code source](https://img.shields.io/badge/Code-Source-orange.svg)](https://github.com/Ashraf-Khabar/FLASKOSQL)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 

@@ -1,13 +1,10 @@
 Metadata-Version: 2.1
 Name: flaskosql
-Version: 2.1.2
+Version: 2.1.4
 Summary: ORM to databases for FLASK API
-Home-page: UNKNOWN
 Author: Ashraf khabar
 Author-email: <khabarachraf@gmail.com>
-License: UNKNOWN
 Keywords: python,orm,api,oracle,mysql,database,flask
-Platform: UNKNOWN
 Classifier: Development Status :: 1 - Planning
 Classifier: Intended Audience :: Developers
 Classifier: Programming Language :: Python :: 3
@@ -20,7 +17,7 @@ License-File: LICENSE
 
 # FlaskoSQL
 
-[![PyPI version](https://img.shields.io/badge/flaskos-2.1.2-green.svg)](https://pypi.org/project/flaskosql/)
+[![PyPI version](https://img.shields.io/badge/flaskos-2.1.4-green.svg)](https://pypi.org/project/flaskosql/)
 [![GitHub code source](https://img.shields.io/badge/Code-Source-orange.svg)](https://github.com/Ashraf-Khabar/FLASKOSQL)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -157,5 +154,3 @@ This package is licensed under the MIT License. See the [LICENSE]() file for mor
 Feel free to modify this template according to your needs. Remember to replace "Package Name" with the actual name of your package and update the relevant sections with the appropriate details about your ORM and its usage with Flask and Oracle databases.
 
 Make sure to also include the actual installation instructions, usage examples, and any other relevant information in your README file to provide a comprehensive guide for users of your package.
-
-
