@@ -476,6 +476,120 @@ class Model:
         else:
             print("Failed to connect to the database.")
             return []
+    
+    @classmethod
+    def bulk_insert(cls, records):
+        # Insert multiple records into the table
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                columns = []
+                placeholders = []
+                values = []
+
+                for record in records:
+                    columns.extend(record.keys())
+                    placeholders.extend([':%s' % key for key in record.keys()])
+                    values.extend(record.values())
+
+                table_name = cls.__name__
+                insert_query = "INSERT INTO {} ({}) VALUES ({})".format(
+                    table_name, ", ".join(columns), ", ".join(placeholders))
+                cursor.executemany(insert_query, values)
+                connection.commit()
+                print("{} records inserted successfully!".format(len(records)))
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error bulk inserting records: {e}")
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+
+    @classmethod
+    def begin_transaction(cls):
+        # Begin a database transaction
+        connection = cls._connection
+        if connection:
+            connection.begin()
+
+    @classmethod
+    def commit_transaction(cls):
+        # Commit the current database transaction
+        connection = cls._connection
+        if connection:
+            connection.commit()
+
+    @classmethod
+    def rollback_transaction(cls):
+        # Roll back the current database transaction
+        connection = cls._connection
+        if connection:
+            connection.rollback()
+    
+    @classmethod
+    def get_table_columns(cls):
+        # Retrieve a list of column names in the table
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__
+                cursor.execute(f"DESCRIBE {table_name}")
+                columns = [row[0] for row in cursor.fetchall()]
+                return columns
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error retrieving table columns: {e}")
+                return []
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return []
+
+    @classmethod
+    def execute_query(cls, query, params=None):
+        # Execute a custom SQL query with optional parameters
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                cursor.execute(query, params)
+                results = cursor.fetchall()
+                return results
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error executing custom query: {e}")
+                return []
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+            return []
+
+    @classmethod
+    def create_index(cls, index_name, columns):
+        # Create an index on specified columns
+        connection = cls._connection
+        if connection:
+            try:
+                cursor = connection.cursor()
+                table_name = cls.__name__
+                columns_str = ", ".join(columns)
+                create_index_query = f"CREATE INDEX {index_name} ON {table_name} ({columns_str})"
+                cursor.execute(create_index_query)
+                connection.commit()
+                print(f"Index '{index_name}' created successfully!")
+            except (cx_Oracle.Error, mysql.connector.Error) as e:
+                print(f"Error creating index: {e}")
+            finally:
+                if cursor:
+                    cursor.close()
+        else:
+            print("Failed to connect to the database.")
+
 
         
         
