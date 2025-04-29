@@ -8,13 +8,6 @@
     <img src="./img/flaskos.png" height = "130">
 </p>
 
-<p align="center">
- <br><br>
- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/2560px-Oracle_logo.svg.png" alt="oracle" height="20">
- <br><br>
- <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="oracle" height="50">
-</p>
-
 **NEW :** *Support MySQL DBMS.*
 
 Description
